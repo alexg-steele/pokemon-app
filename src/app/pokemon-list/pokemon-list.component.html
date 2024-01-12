@@ -1,0 +1,22 @@
+<input [(ngModel)]="name" placeholder="name" (change)="loadPokemon()"/>
+<select [(ngModel)]="generation" placeholder="generation" (change)="loadPokemon()">
+    <option *ngFor="let g of (generationList$ | async)" [value]="g" >
+        {{g}}
+    </option>
+</select>
+<select [(ngModel)]="version" (change)="loadPokemon()">
+    <option hidden value="" disabled selected>Select version</option>
+    <option *ngFor="let v of (versionList$ | async)" [value]="v" >
+        {{v}}
+    </option>
+</select>
+<select [(ngModel)]="type" placeholder="type" (change)="loadPokemon()">
+    <option *ngFor="let t of (typeList$ | async)" [value]="t" >
+        {{t}}
+    </option>
+</select>
+<ul>
+    <li *ngFor="let poke of (pokemon$ | async)?.data">
+        <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
+    </li>
+</ul>
