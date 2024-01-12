@@ -1,22 +1,35 @@
 <input [(ngModel)]="name" placeholder="name" (change)="loadPokemon()"/>
-<select [(ngModel)]="generation" placeholder="generation" (change)="loadPokemon()">
+<select [(ngModel)]="generation" placeholder="generation" (change)="updateQuery()">
     <option *ngFor="let g of (generationList$ | async)" [value]="g" >
         {{g}}
     </option>
 </select>
-<select [(ngModel)]="version" (change)="loadPokemon()">
+<select [(ngModel)]="version" (change)="updateQuery()">
     <option hidden value="" disabled selected>Select version</option>
     <option *ngFor="let v of (versionList$ | async)" [value]="v" >
         {{v}}
     </option>
 </select>
-<select [(ngModel)]="type" placeholder="type" (change)="loadPokemon()">
+<select [(ngModel)]="type" placeholder="type" (change)="updateQuery()">
     <option *ngFor="let t of (typeList$ | async)" [value]="t" >
         {{t}}
     </option>
 </select>
-<ul>
-    <li *ngFor="let poke of (pokemon$ | async)?.data">
-        <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
-    </li>
-</ul>
+
+<div *ngIf="(pokemon$ | async) as pokemonResult">
+    <ul>
+        <li *ngFor="let poke of (pokemon$ | async)?.data">
+            <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
+        </li>
+    </ul>
+
+    <div class="page-controls">
+        <button [disabled]="pokemonResult.pageNumber === 0"
+            (click)="getPage(pokemonResult.pageNumber - 1)">&#8592;
+        </button>
+        <span>Page: {{pokemonResult.pageNumber + 1}}</span>
+        <button [disabled]="pokemonResult.pageNumber === pokemonResult.totalPages - 1"
+            (click)=" getPage(pokemonResult.pageNumber + 1)">&#8594;</button>
+    </div>
+    <p>{{pokemonResult.totalPages}} Pages</p>
+</div>

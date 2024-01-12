@@ -5,7 +5,8 @@ import { VersionService } from '../version.service';
 import { TypeService } from '../type.service';
 import { Observable } from 'rxjs';
 import { PokemonSearchResponse } from '../../models/pokemon-search-response';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PokemonSearchParams } from '../../models/pokemon-search-params';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,6 +19,7 @@ export class PokemonListComponent {
   generation?: string;
   version?: string;
   type?: string;
+  page?: number;
 
   generationList$?: Observable<String[]>;
   versionList$?: Observable<String[]>;
@@ -30,6 +32,7 @@ export class PokemonListComponent {
     private versionService: VersionService,
     private typeService: TypeService,
     private route: ActivatedRoute,
+    private router: Router,
     ) {
       this.loadPokemon();
       this.getGenerations();
@@ -41,12 +44,16 @@ export class PokemonListComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(qp => {
       this.name = qp['name'];
+      this.generation = qp['generation'];
+      this.version = qp['version'];
+      this.type = qp['type'];
+      this.page = parseInt(qp['page']);
       this.loadPokemon();
     })
   }
 
   loadPokemon() {
-    this.pokemon$ = this.pokemonService.getMany(this.name, this.generation, this.version, this.type);
+    this.pokemon$ = this.pokemonService.getMany(this.name, this.generation, this.version, this.type, this.page);
   }
 
   getGenerations() {
@@ -59,6 +66,29 @@ export class PokemonListComponent {
 
   getVersions() {
     this.versionList$ = this.versionService.getVersions();
+  }
+
+  getPage(page: number){
+    this.page = page;
+    console.log(page);
+    this.updateQuery();
+  }
+
+  updateQuery() {
+    const queryParams: PokemonSearchParams = {
+      name: this.name,
+      generation: this.generation,
+      version: this.version,
+      type: this.type,
+      page: this.page,
+    }
+
+    this.router.navigate(
+      [],
+      {queryParams}
+    )
+
+  
   }
 
 

@@ -14,12 +14,13 @@ export class PokemonService {
     
   }
 
-  getMany(name?: string, generation?: string, version?:string, type?:string){
+  getMany(name?: string, generation?: string, version?:string, type?:string, page?:number){
     let params: HttpParams = new HttpParams()
     if (name) params = params.append("name",name);
     if (generation) params = params.append("generation",generation.toLowerCase());
     if (version) params = params.append("version",version);
     if (type) params = params.append("type",type);
+    if (page) params = params.append("page",page);
     
     return this.http.get<PokemonSearchResponse>(`${environment.apiUrl}/Pokemon`, {params} )
 
