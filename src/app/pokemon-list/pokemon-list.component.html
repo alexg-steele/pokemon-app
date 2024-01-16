@@ -31,11 +31,11 @@
 </mat-form-field>
 
 <div *ngIf="(pokemon$ | async) as pokemonResult">
-    <ul>
-        <li *ngFor="let poke of (pokemon$ | async)?.data">
+    <mat-list role="list">
+        <mat-list-item *ngFor="let poke of (pokemon$ | async)?.data">
             <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
-        </li>
-    </ul>
+        </mat-list-item>
+    </mat-list>
 
     <div class="page-controls">
         <button [disabled]="pokemonResult.pageNumber === 0"
