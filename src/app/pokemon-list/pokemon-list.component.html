@@ -1,20 +1,34 @@
-<input [(ngModel)]="name" placeholder="name" (change)="loadPokemon()"/>
-<select [(ngModel)]="generation" placeholder="generation" (change)="updateQuery()">
-    <option *ngFor="let g of (generationList$ | async)" [value]="g" >
-        {{g}}
-    </option>
-</select>
-<select [(ngModel)]="version" (change)="updateQuery()">
-    <option hidden value="" disabled selected>Select version</option>
-    <option *ngFor="let v of (versionList$ | async)" [value]="v" >
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Pokemon</mat-label>
+    <input matInput [(ngModel)]="name" placeholder="name" (change)="loadPokemon()"/>
+    </mat-form-field>
+</form>
+
+<mat-form-field>
+    <mat-label for="generation">Generation</mat-label>
+    <mat-select [(ngModel)]="generation" placeholder="generation" (ngModelChange)="updateQuery()">
+        <mat-option *ngFor="let g of (generationList$ | async)" [value]="g" >
+            {{g}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Version</mat-label>
+    <mat-select  [(ngModel)]="version" (ngModelChange)="updateQuery()">
+    <mat-option *ngFor="let v of (versionList$ | async)" [value]="v" >
         {{v}}
-    </option>
-</select>
-<select [(ngModel)]="type" placeholder="type" (change)="updateQuery()">
-    <option *ngFor="let t of (typeList$ | async)" [value]="t" >
+    </mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select  [(ngModel)]="type" placeholder="type" (ngModelChange)="updateQuery()">
+    <mat-option *ngFor="let t of (typeList$ | async)" [value]="t" >
         {{t}}
-    </option>
-</select>
+    </mat-option>
+</mat-select>
+</mat-form-field>
 
 <div *ngIf="(pokemon$ | async) as pokemonResult">
     <ul>

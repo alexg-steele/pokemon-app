@@ -6,7 +6,12 @@ import { AppComponent } from './app.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule, 
+    MatFormFieldModule, 
+    MatSelectModule, 
+    MatInputModule, 
+    BrowserAnimationsModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

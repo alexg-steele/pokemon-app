@@ -8,6 +8,8 @@ import { PokemonSearchResponse } from '../../models/pokemon-search-response';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonSearchParams } from '../../models/pokemon-search-params';
 
+
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -75,6 +77,7 @@ export class PokemonListComponent {
   }
 
   updateQuery() {
+    console.log(this.name, this.generation, this.version, this.type)
     const queryParams: PokemonSearchParams = {
       name: this.name,
       generation: this.generation,
