@@ -31,18 +31,18 @@
 </mat-form-field>
 
 <div *ngIf="(pokemon$ | async) as pokemonResult">
-    <mat-list role="list">
-        <mat-list-item *ngFor="let poke of (pokemon$ | async)?.data">
+    <mat-grid-list cols="4" rowHeight="2:1" role="list">
+        <mat-grid-tile *ngFor="let poke of (pokemon$ | async)?.data">
             <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
-        </mat-list-item>
-    </mat-list>
+        </mat-grid-tile>
+    </mat-grid-list>
 
     <div class="page-controls">
-        <button [disabled]="pokemonResult.pageNumber === 0"
+        <button mat-button [disabled]="pokemonResult.pageNumber === 0"
             (click)="getPage(pokemonResult.pageNumber - 1)">&#8592;
         </button>
         <span>Page: {{pokemonResult.pageNumber + 1}}</span>
-        <button [disabled]="pokemonResult.pageNumber === pokemonResult.totalPages - 1"
+        <button mat-button [disabled]="pokemonResult.pageNumber === pokemonResult.totalPages - 1"
             (click)=" getPage(pokemonResult.pageNumber + 1)">&#8594;</button>
     </div>
     <p>{{pokemonResult.totalPages}} Pages</p>

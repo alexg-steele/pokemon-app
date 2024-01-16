@@ -10,5 +10,5 @@ export interface PokemonListItem {
      flavorText :  string ,
      genus :  string ,
      types : PokemonType[],
-     images : PokemonImages[],
+     images : PokemonImages,
 }

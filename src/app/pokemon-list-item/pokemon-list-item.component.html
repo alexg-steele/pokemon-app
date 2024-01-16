@@ -1,1 +1,8 @@
-<p>{{pokemon.pokemonName}}</p>
+<button mat-button>
+    <mat-card class="poke-card">
+        <mat-card-content>
+            <mat-card-title>{{pokemon.pokemonName.toUpperCase()}}</mat-card-title>
+            <img mat-card-sm-image src="{{getGif()}}">
+        </mat-card-content>
+    </mat-card>
+</button>
