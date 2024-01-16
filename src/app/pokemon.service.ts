@@ -25,4 +25,8 @@ export class PokemonService {
     return this.http.get<PokemonSearchResponse>(`${environment.apiUrl}/Pokemon`, {params} )
 
   }
+
+  getPokemonById(id?: number) {
+    return this.http.get<PokemonListItem>(`${environment.apiUrl}/Pokemon/${id}`)
+  }
 }

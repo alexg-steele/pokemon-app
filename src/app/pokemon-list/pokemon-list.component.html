@@ -1,42 +1,45 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width">
+<!-- Inputs/Drop down options -->
+<div>
+    <mat-form-field>
         <mat-label>Pokemon</mat-label>
-    <input matInput [(ngModel)]="name" placeholder="name" (change)="loadPokemon()"/>
+        <input matInput [(ngModel)]="name" placeholder="name" (change)="loadPokemon()" />
     </mat-form-field>
-</form>
+    <mat-form-field>
+        <mat-label for="generation">Generation</mat-label>
+        <mat-select [(ngModel)]="generation" placeholder="generation" (ngModelChange)="updateQuery()">
+            <mat-option *ngFor="let g of (generationList$ | async)" [value]="g">
+                {{g}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Version</mat-label>
+        <mat-select [(ngModel)]="version" (ngModelChange)="updateQuery()">
+            <mat-option *ngFor="let v of (versionList$ | async)" [value]="v">
+                {{v}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="type" placeholder="type" (ngModelChange)="updateQuery()">
+            <mat-option *ngFor="let t of (typeList$ | async)" [value]="t">
+                {{t}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
 
-<mat-form-field>
-    <mat-label for="generation">Generation</mat-label>
-    <mat-select [(ngModel)]="generation" placeholder="generation" (ngModelChange)="updateQuery()">
-        <mat-option *ngFor="let g of (generationList$ | async)" [value]="g" >
-            {{g}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
-<mat-form-field>
-    <mat-label>Version</mat-label>
-    <mat-select  [(ngModel)]="version" (ngModelChange)="updateQuery()">
-    <mat-option *ngFor="let v of (versionList$ | async)" [value]="v" >
-        {{v}}
-    </mat-option>
-</mat-select>
-</mat-form-field>
-<mat-form-field>
-    <mat-label>Type</mat-label>
-    <mat-select  [(ngModel)]="type" placeholder="type" (ngModelChange)="updateQuery()">
-    <mat-option *ngFor="let t of (typeList$ | async)" [value]="t" >
-        {{t}}
-    </mat-option>
-</mat-select>
-</mat-form-field>
-
+<!-- Pokemon Grid & Pagination -->
 <div *ngIf="(pokemon$ | async) as pokemonResult">
+    <!-- Grid -->
     <mat-grid-list cols="4" rowHeight="2:1" role="list">
         <mat-grid-tile *ngFor="let poke of (pokemon$ | async)?.data">
             <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
         </mat-grid-tile>
     </mat-grid-list>
 
+    <!-- Pagination -->
     <div class="page-controls">
         <button mat-button [disabled]="pokemonResult.pageNumber === 0"
             (click)="getPage(pokemonResult.pageNumber - 1)">&#8592;
@@ -45,5 +48,7 @@
         <button mat-button [disabled]="pokemonResult.pageNumber === pokemonResult.totalPages - 1"
             (click)=" getPage(pokemonResult.pageNumber + 1)">&#8594;</button>
     </div>
+
+    <!-- Total pages -->
     <p>{{pokemonResult.totalPages}} Pages</p>
 </div>

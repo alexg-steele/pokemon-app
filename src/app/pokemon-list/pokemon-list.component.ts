@@ -72,7 +72,6 @@ export class PokemonListComponent {
 
   getPage(page: number){
     this.page = page;
-    console.log(page);
     this.updateQuery();
   }
 

@@ -18,12 +18,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonListItemComponent,
     PokemonListComponent,
+    PokemonDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<button mat-button>
+<button mat-button [routerLink]="['/details', pokemon.id]">
     <mat-card class="poke-card">
         <mat-card-content>
             <mat-card-title>{{pokemon.pokemonName.toUpperCase()}}</mat-card-title>

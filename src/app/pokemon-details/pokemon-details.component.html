@@ -1,0 +1,74 @@
+<mat-card class="poke-card">
+    <mat-card-content class="poke-card-content">
+        <mat-card-title-group class="poke-card-title-group">
+            <mat-card-title class="poke-title">
+                {{name$|async}}
+            </mat-card-title>
+            <img mat-card-avatar src="{{primaryIcon$|async}}">
+        </mat-card-title-group>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Bio</mat-card-subtitle>
+        <p>{{flavorText$|async}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Genus</mat-card-subtitle>
+        <p>{{genus$|async}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Base Experience</mat-card-subtitle>
+        <p>{{baseExperience$|async}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Weight</mat-card-subtitle>
+        <p>{{weight$|async}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Height</mat-card-subtitle>
+        <p>{{height$|async}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Types</mat-card-subtitle>
+        <p *ngFor="let t of (types$|async)">{{t.typeName}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Animations</mat-card-subtitle>
+        <div class="flex-container">
+            <div *ngFor="let g of (gifs$|async)">
+                <img src="{{g}}">
+            </div>
+        </div>
+    </mat-card-content>
+    <!-- <mat-card-content>
+        <mat-card-subtitle>High Fidelity</mat-card-subtitle>
+        <div *ngFor="let hf of (highFidelity$|async)">
+            <img mat-card-sm-image src="{{hf}}">
+        </div>
+    </mat-card-content> -->
+    <mat-card-content>
+        <mat-card-subtitle>Icons</mat-card-subtitle>
+        <div class="flex-container">
+            <div *ngFor="let i of (icons$|async)">
+                <img mat-card-sm-image src="{{i}}">
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Official Artwork</mat-card-subtitle>
+        <div *ngFor="let oa of (officialArtwork$|async)">
+            <img mat-card-sm-image src="{{oa}}">
+        </div>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-card-subtitle>Sprites</mat-card-subtitle>
+        <div class="flex-container">
+            <div *ngFor="let s of (sprites$|async)">
+                <img mat-card-sm-image src="{{s}}">
+            </div>
+        </div>
+    </mat-card-content>
+
+
+
+
+</mat-card>
