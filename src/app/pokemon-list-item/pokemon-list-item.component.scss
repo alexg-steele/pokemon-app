@@ -1,4 +1,15 @@
-.poke-card {
-    width:150px ;
-    padding: 10px;
+@media screen and (max-width: 500px) {
+
+    .poke-card {
+        width:500px;
+        // padding: 10px;
+    }
+
+}
+@media screen and (min-width: 500px) {
+    
+    .poke-card {
+        width: 200px;
+    }
+    
 }

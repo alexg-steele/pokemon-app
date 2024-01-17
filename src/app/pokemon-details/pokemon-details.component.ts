@@ -69,7 +69,7 @@ export class PokemonDetailsComponent {
     map(i => i.sprites)
   )
 
-  primaryIcon$ = this.icons$?.pipe(map( i => i[0]))
+  primaryIcon$ = this.officialArtwork$?.pipe(map( oa => oa[0]))
   
 
 

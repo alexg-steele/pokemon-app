@@ -1,0 +1,24 @@
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+@media screen and (max-width: 500px) {
+  mat-form-field {
+    width:100%;
+  }
+
+  app-pokemon-list-item {
+    display: flex;
+    height: 100px;
+    width: 100%;
+  }
+
+  button {
+    height: 100%;
+  }
+
+  
+  
+}
