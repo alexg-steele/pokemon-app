@@ -33,7 +33,7 @@
 <!-- Pokemon Grid & Pagination -->
 <div *ngIf="(pokemon$ | async) as pokemonResult">
     <!-- Grid -->
-    <mat-grid-list cols="4" rowHeight="2:1" role="list">
+    <mat-grid-list [cols]="mybreakpoint" rowHeight="200px" (window:resize)="handleSize($event)" >
         <mat-grid-tile *ngFor="let poke of (pokemon$ | async)?.data">
             <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
         </mat-grid-tile>

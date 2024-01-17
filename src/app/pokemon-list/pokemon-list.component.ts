@@ -22,6 +22,7 @@ export class PokemonListComponent {
   version?: string;
   type?: string;
   page?: number;
+  mybreakpoint?: number;
 
   generationList$?: Observable<String[]>;
   versionList$?: Observable<String[]>;
@@ -44,6 +45,8 @@ export class PokemonListComponent {
   }
 
   ngOnInit() {
+    this.mybreakpoint = (window.innerWidth <= 500) ? 1 : 4;
+
     this.route.queryParams.subscribe(qp => {
       this.name = qp['name'];
       this.generation = qp['generation'];
@@ -52,6 +55,12 @@ export class PokemonListComponent {
       this.page = parseInt(qp['page']);
       this.loadPokemon();
     })
+  }
+
+  handleSize(event: any) {
+      console.log(event.target.innerWidth);
+      console.log(this.mybreakpoint);
+      this.mybreakpoint = (event.target.innerWidth <= 500) ? 1 : 4;
   }
 
   loadPokemon() {
